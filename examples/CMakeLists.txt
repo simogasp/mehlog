@@ -17,12 +17,20 @@ if(WITH_GLOG)
         )
         set (WITH_GTEST, OFF)
         set (WITH_GFLAGS, OFF)
+
+        # Force glog to use C++20 to avoid C++23 compatibility issues
+        set(CMAKE_CXX_STANDARD_TEMP ${CMAKE_CXX_STANDARD})
+        set(CMAKE_CXX_STANDARD 20)
+
         FetchContent_GetProperties(glog)
         if(NOT glog_POPULATED)
             cmake_policy(SET CMP0169 OLD) # to suppress warning about FetchContent_MakeAvailable
             FetchContent_Populate(glog)
             add_subdirectory(${glog_SOURCE_DIR} ${glog_BINARY_DIR})
         endif()
+
+        # Restore C++23 for our code
+        set(CMAKE_CXX_STANDARD ${CMAKE_CXX_STANDARD_TEMP})
 #    endif()
     message(STATUS "glog found, version: ${glog_VERSION}")
     add_executable(glog_example glog_example.cpp)
@@ -41,11 +49,18 @@ if(WITH_SPDLOG)
             GIT_TAG   v1.16.0
         )
 
+        # Force spdlog to use C++20 to avoid C++23 compatibility issues
+        set(CMAKE_CXX_STANDARD_TEMP ${CMAKE_CXX_STANDARD})
+        set(CMAKE_CXX_STANDARD 20)
+
         FetchContent_GetProperties(spdlog)
         if(NOT spdlog_POPULATED)
             FetchContent_Populate(spdlog)
             add_subdirectory(${spdlog_SOURCE_DIR} ${spdlog_BINARY_DIR})
         endif()
+
+        # Restore C++23 for our code
+        set(CMAKE_CXX_STANDARD ${CMAKE_CXX_STANDARD_TEMP})
     endif()
     message(STATUS "spdlog found, version: ${spdlog_VERSION}")
     add_executable(spdlog_example spdlog_example.cpp)
