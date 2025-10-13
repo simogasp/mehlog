@@ -7,7 +7,15 @@ if(NOT Catch2_FOUND)
       GIT_REPOSITORY https://github.com/catchorg/Catch2.git
       GIT_TAG v3.11.0
     )
+
+    # Force Catch2 to use C++20 to avoid C++23 compatibility issues
+    set(CMAKE_CXX_STANDARD_TEMP ${CMAKE_CXX_STANDARD})
+    set(CMAKE_CXX_STANDARD 20)
+
     FetchContent_MakeAvailable(Catch2)
+
+    # Restore C++23 for our code
+    set(CMAKE_CXX_STANDARD ${CMAKE_CXX_STANDARD_TEMP})
 
     list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
 endif()
