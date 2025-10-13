@@ -78,13 +78,14 @@ jobs:
         sudo apt-get install -y clang-17
 
     - name: Configure CMake
-      run: cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DMEHLOG_BUILD_EXAMPLES=ON -DMEHLOG_BUILD_TESTS=ON
+      run: cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DMEHLOG_BUILD_EXAMPLES=ON -DMEHLOG_BUILD_TESTS=ON -DCMAKE_VERBOSE_MAKEFILE=ON
       env:
         CC: ${{ matrix.cc }}
         CXX: ${{ matrix.cxx }}
 
     - name: Build
-      run: cmake --build build --config ${{ matrix.build_type }}
+      run: cmake --build build --config ${{ matrix.build_type }} --verbose --parallel
 
     - name: Run tests
       run: ctest --test-dir build --output-on-failure --build-config ${{ matrix.build_type }}
+
