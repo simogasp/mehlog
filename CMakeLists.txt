@@ -1,9 +1,20 @@
 cmake_minimum_required(VERSION 3.21)
 
-project(mehlog VERSION 0.1.0 LANGUAGES CXX)
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}/include/mehlog/mehlog.hpp" HEADER_CONTENT)
+string(REGEX MATCH "static constexpr int major{([0-9]+)};" _ "${HEADER_CONTENT}")
+set(VERSION_MAJOR ${CMAKE_MATCH_1})
+string(REGEX MATCH "static constexpr int minor{([0-9]+)};" _ "${HEADER_CONTENT}")
+set(VERSION_MINOR ${CMAKE_MATCH_1})
+string(REGEX MATCH "static constexpr int patch{([0-9]+)};" _ "${HEADER_CONTENT}")
+set(VERSION_PATCH ${CMAKE_MATCH_1})
+set(VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
+
+project(mehlog VERSION ${VERSION_STRING} LANGUAGES CXX)
 option(MEHLOG_BUILD_EXAMPLES "Build the examples" ON)
 option(MEHLOG_BUILD_TESTS "Build the tests" ON)
 option(MEHLOG_ENABLE_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" ON)
+
+message(STATUS "Configuring mehlog version ${PROJECT_VERSION}")
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
     set(MEHLOG_COMPILE_OPTIONS "-Wall;-Wextra;-pedantic;-Wno-comment;-Wshadow;-Wnon-virtual-dtor;-Wpedantic;-Wconversion;-Wmisleading-indentation;-Wsign-conversion;-Wfloat-equal")

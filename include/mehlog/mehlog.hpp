@@ -37,6 +37,18 @@ namespace mehlog {
 // #endif
 
 /**
+ * @brief Library version information
+ */
+struct version
+{
+    static constexpr int major{0};
+    static constexpr int minor{1};
+    static constexpr int patch{0};
+
+    static constexpr std::string_view string{"0.1.0"};
+};
+
+/**
  * @enum LogLevel
  * @brief Defines the severity levels for log messages.
  *
