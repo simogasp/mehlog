@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 4.0)
+cmake_minimum_required(VERSION 3.21)
+
 project(mehlog VERSION 0.1.0 LANGUAGES CXX)
 option(MEHLOG_BUILD_EXAMPLES "Build the examples" ON)
 option(MEHLOG_BUILD_TESTS "Build the tests" ON)
