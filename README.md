@@ -10,6 +10,12 @@ This allows you to switch logging back ends with minimal code changes.
 - Allow seamless integration with different logging back ends (e.g., spdlog, glog).
 - If no back end is configured, logs are written to `std::clog` by default.
 
+## Installation
+
+To use mehlog in your project, simply copy the `include/mehlog/mehlog.hpp` header file into your project and compile with a C++23 compliant compiler.
+
+If you want to use a back end logging library, you can use the provided adapters in the `include/mehlog/adapters/` directory or write your own custom adapter using the existing ones as inspiration.
+
 ## Basic Usage (No Back End)
 
 By default, mehlog logs to `std::clog` if no back end is specified.
@@ -59,9 +65,9 @@ int main()
 
 ## Switching Back Ends
 
-Switching between logging back ends only requires changing the adapter include and the handler initialization. The rest of your logging code remains unchanged.
+Switching between logging back ends only requires changing the adapter include and the handler initialization.
+The rest of your logging code remains unchanged.
 
 ## License
 
-See LICENSE file for details.
-
+See [LICENSE](LICENSE) file for details.
