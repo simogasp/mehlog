@@ -385,7 +385,7 @@ void log_error(std::string_view fmt, Args&&... args) { logf(LogLevel::Error, fmt
  * Just a simple test function to demonstrate logging at various levels.
  *
  */
-constexpr void dummy_test()
+inline void dummy_test()
 {
     log_trace("this is a trace message");
     log_debug("this is a debug message");
