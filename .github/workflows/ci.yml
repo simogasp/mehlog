@@ -4,8 +4,8 @@ on:
   push:
   pull_request:
   workflow_dispatch:
-    schedule:
-      - cron: "0 8 * * 1"
+  schedule:
+    - cron: "0 8 * * 1"
 
 jobs:
   build-and-test:
