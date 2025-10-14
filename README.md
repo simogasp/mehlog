@@ -1,5 +1,7 @@
 # mehlog
 
+[![CI](https://github.com/simogasp/mehlog/actions/workflows/ci.yml/badge.svg)](https://github.com/simogasp/mehlog/actions/workflows/ci.yml) 
+
 mehlog is a minimalistic C++23 logging library.
 It provides a simple logging interface and can be used as a lightweight logger on its own, or as a wrapper around popular back end logging libraries such as spdlog or glog.
 This allows you to switch logging back ends with minimal code changes.
