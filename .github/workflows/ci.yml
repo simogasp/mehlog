@@ -58,6 +58,12 @@ jobs:
         sudo ./llvm.sh 17
         sudo apt-get install -y clang-17
 
+    - name: Install dependencies for macos with homebrew
+      uses: tecolicom/actions-use-homebrew-tools@v1
+      if: matrix.os == 'macos-latest'
+      with:
+        tools: glog spdlog catch2
+
     - name: Configure CMake Release
       run: cmake -B build_release -DCMAKE_BUILD_TYPE=Release -DMEHLOG_BUILD_EXAMPLES=ON -DMEHLOG_BUILD_TESTS=ON -DCMAKE_VERBOSE_MAKEFILE=ON
       env:
