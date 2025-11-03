@@ -7,6 +7,11 @@ on:
   schedule:
     - cron: "15 8 * * 1"
 
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
 jobs:
   build-and-test:
     name: ${{ matrix.os }} - ${{ matrix.compiler }}
