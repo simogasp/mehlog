@@ -31,8 +31,8 @@ jobs:
             cxx: g++-13
           - os: ubuntu-latest
             compiler: clang
-            cc: clang-17
-            cxx: clang++-17
+            cc: clang
+            cxx: clang++
           - os: macos-latest
             compiler: default
           - os: windows-latest
@@ -58,10 +58,7 @@ jobs:
     - name: Install Clang 17 (Ubuntu)
       if: matrix.os == 'ubuntu-latest' && matrix.compiler == 'clang'
       run: |
-        wget https://apt.llvm.org/llvm.sh
-        chmod +x llvm.sh
-        sudo ./llvm.sh 17
-        sudo apt-get install -y clang-17
+        sudo apt-get install -y clang
 
     - name: Install dependencies for macos with homebrew
       uses: tecolicom/actions-use-homebrew-tools@v1
